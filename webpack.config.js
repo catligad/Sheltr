@@ -21,12 +21,12 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|svg|jpg|gif|jpeg)$/,
         use: ['file-loader'],
       },
       {
-        test: /\.scss?/,
-        loader: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader']
       }
     ],
   },

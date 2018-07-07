@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import styled from 'styled-components';
-
-const Holder = styled.div`
-  display: flex;
-`;
+import { Background } from './components/styles/indexStylings';
+import Page1 from './components/page1';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      word: 'Hello',
+      currentPage: 1,
     };
   }
 
   render() {
+    const { currentPage } = this.state;
     return (
-      <Holder>
-        {this.state.word}
-      </Holder>
+      <Background>
+        <Page1 currentPage={currentPage} />
+      </Background>
     );
   }
 }
