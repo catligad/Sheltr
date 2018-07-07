@@ -1,0 +1,29 @@
+{
+  "name": "mvp",
+  "version": "1.0.0",
+  "description": "Pet Matcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellooimkat/mvp.git"
+  },
+  "keywords": [
+    "pet",
+    "matcher"
+  ],
+  "author": "Cat Ligad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hellooimkat/mvp/issues"
+  },
+  "homepage": "https://github.com/hellooimkat/mvp#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0"
+  }
+}
