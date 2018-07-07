@@ -13,7 +13,7 @@ module.exports = {
     rules: [
       {
         exclude: path.join(__dirname, '/node_modules/'),
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
         options: {
           presets: ['env', 'react', 'es2015'],
