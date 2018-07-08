@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Holder, Login, Input, Button,
-} from './styles/pageStylings';
+  Login, Input, Button,
+} from './styles/page1Stylings';
+import Holder from './styles/holderStylings';
 import Logo from './logo';
 
 export default function Page1(props) {

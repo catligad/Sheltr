@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-  Holder, ImageHolder, Image, Animal, Description, Pregunta,
-} from './styles/pageStylings';
+  ImageHolder, Animal, Description, Pregunta,
+} from './styles/page2Stylings';
+import Holder from './styles/holderStylings';
+import Image from './styles/imageStylings';
 import Logo from './logo';
 
 const images = {
@@ -20,10 +22,10 @@ const AnimalLogos = ({ onAnimalClick }) => (
         <Image
           src={images[animal]}
           alt="animal"
-          type="animal"
+          type="icon"
           onClick={() => onAnimalClick(animal)}
         />
-        <Description>
+        <Description type="icon">
           {animal}
         </Description>
       </Animal>
