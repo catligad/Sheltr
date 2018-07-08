@@ -35,15 +35,17 @@ router.get('/:type', (req, res) => {
   })
     .then((response) => {
       const pets = [];
-      const list = ['name', 'age', 'size', 'breed', 'description', 'media'];
+      const list = ['name', 'age', 'size', 'breeds', 'description', 'media'];
       response.data.petfinder.pets.pet.forEach((pet) => {
         const petData = {};
         list.forEach((category) => {
           if (pet[category]) {
-            if (category !== 'media') {
+            if (category !== 'media' && category !== 'breeds') {
               petData[category] = pet[category].$t;
-            } else {
+            } else if (category === 'media') {
               petData[category] = pet[category].photos;
+            } else if (category === 'breeds') {
+              petData[category] = pet[category].breed;
             }
           } else {
             petData[category] = {};
@@ -51,6 +53,7 @@ router.get('/:type', (req, res) => {
         });
         pets.push(petData);
       });
+      console.log(JSON.stringify(pets));
       res.send({ pets });
     })
     .catch(err => console.log(err));

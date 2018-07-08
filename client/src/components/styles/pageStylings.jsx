@@ -110,6 +110,8 @@ export const Image = styled.img`
       return '150px';
     } if (type === 'logo' || type === 'nav') {
       return '40px';
+    } if (type === 'animalPic') {
+      return '250px';
     }
     return null;
   }};
@@ -118,6 +120,8 @@ export const Image = styled.img`
       return '150px';
     } if (type === 'logo' || type === 'nav') {
       return '40px';
+    } if (type === 'animalPic') {
+      return '250px';
     }
     return null;
   }};
@@ -130,20 +134,22 @@ export const Image = styled.img`
     }
     if (type === 'logo') {
       return '5px';
+    } if (type === 'animalPic') {
+      return '';
     }
     return null;
   }};
   transition: box-shadow all 0.5s ease-in-out;
 
   &:hover{
-    box-shadow: 0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12);
-    transform: scale(1.15, 1.15);
+    box-shadow: ${({ type }) => (
+    type !== 'animalPic'
+      ? '0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12)' : ''
+  )};
+    transform: ${({ type }) => (
+    type !== 'animalPic' ? 'scale(1.15, 1.15)' : ''
+  )};
   }
-`;
-
-export const NoPic = styled.img`
-  height: 200px;
-  width: 200px;
 `;
 
 export const LogoHolder = styled.div`
@@ -170,6 +176,7 @@ export const DecisionBtn = styled.img`
     if (type === 'center') {
       return '70px';
     }
+    return null;
   }};
   width: ${({ type }) => {
     if (type === 'side') {
@@ -178,6 +185,7 @@ export const DecisionBtn = styled.img`
     if (type === 'center') {
       return '70px';
     }
+    return null;
   }};
   padding-left: ${({ nav }) => (
     nav === 'undo' ? '25px' : ''

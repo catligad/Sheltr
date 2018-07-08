@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cards, { Card } from 'react-swipe-card';
 import './styles/styles.css';
 import {
-  LogoHolder, Image, Holder, Description, NoPic, BtnHolder, DecisionBtn,
+  LogoHolder, Image, Holder, Description, BtnHolder, DecisionBtn,
 } from './styles/pageStylings';
 import Logo from './logo';
 import noPicLogo from '../../public/icons/png/no-camera.png';
@@ -31,25 +31,38 @@ const Navi = ({ onLogoClick }) => (
   </LogoHolder>
 );
 
-const PetCards = ({ data, onSwipeLeft, onSwipeRight }) => (
-  <Cards onEnd={console.log("action('end')")} className="master-root">
-    {data.map(item => (
-      <Card
-        key={item}
-        onSwipeLeft={() => onSwipeLeft(item)}
-        onSwipeRight={() => onSwipeRight(item)}
-      >
-        <NoPic
-          src={noPicLogo}
-          type="animal"
-        />
-        <Description>
+const PetCards = ({ data, onSwipeLeft, onSwipeRight }) => {
+  console.log(data);
+  return (
+    <Cards
+      onEnd={() => console.log('deck finished')}
+      className="master-root"
+    >
+      {data.map((item, i) => {
+        let imgSrc;
+        if (item.media) {
+          imgSrc = item.media.photo[2].$t;
+        } else {
+          imgSrc = noPicLogo;
+        }
+        return (
+          <Card
+            key={item.name}
+            onSwipeLeft={() => onSwipeLeft()}
+            onSwipeRight={() => onSwipeRight()}
+          >
+            <Image
+              src={imgSrc}
+              type="animalPic"
+            />
+            <Description>
           Hello
-        </Description>
-      </Card>
-    ))}
-  </Cards>
-);
+            </Description>
+          </Card>
+        );
+      })}
+    </Cards>);
+};
 
 const ButtonSelection = () => (
   <BtnHolder>
@@ -60,41 +73,29 @@ const ButtonSelection = () => (
   </BtnHolder>
 );
 
-export default class MyCards extends Component {
-  state = {
-    data: ['Alexandre', 'Thomas', 'Lucien', 'Raphael', 'Donatello', 'Michelangelo', 'Leonardo'],
-  }
+export default function MyCards(props) {
+  const onSwipeLeft = () => {
+    console.log('swiped left');
+  };
 
-  onSwipeLeft = () => {
-    const newData = this.state.data.slice(1);
-    this.setState({
-      data: newData,
-    });
-  }
+  const onSwipeRight = () => {
+    console.log('swiped right');
+  };
 
-  onSwipeRight = () => {
-    const newData = this.state.data.slice(1);
-    this.setState({
-      data: newData,
-    });
-  }
+  const { currentPage, onLogoClick, animals } = props;
+  if (currentPage === 3) {
+    return (
+      <Holder page={currentPage}>
+        <Navi onLogoClick={onLogoClick} />
+        <PetCards
+          onSwipeLeft={onSwipeLeft}
+          onSwipeRight={onSwipeRight}
+          data={animals}
+        />
+        <ButtonSelection />
+      </Holder>
 
-  render() {
-    const { currentPage, onLogoClick } = this.props;
-    if (currentPage === 3) {
-      return (
-        <Holder page={currentPage}>
-          <Navi onLogoClick={onLogoClick} />
-          <PetCards
-            onSwipeLeft={this.onSwipeLeft}
-            onSwipeRight={this.onSwipeRight}
-            data={this.state.data}
-          />
-          <ButtonSelection />
-        </Holder>
-
-      );
-    }
-    return null;
+    );
   }
+  return null;
 }

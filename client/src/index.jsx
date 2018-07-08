@@ -5,6 +5,7 @@ import { Background } from './components/styles/indexStylings';
 import Page1 from './components/page1';
 import Page2 from './components/page2';
 import Page3 from './components/page3';
+import sample from './sampleData';
 
 export default class App extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ export default class App extends Component {
     this.state = {
       currentPage: 2,
       animalClicked: null,
-      animals: [],
+      animals: sample,
     };
   }
 
@@ -24,15 +25,15 @@ export default class App extends Component {
 
   onAnimalClick = (animal) => {
     const { currentPage } = this.state;
-    axios.get(`/api/pets/${animal}`)
-      .then((response) => {
-        this.setState({
-          animals: response.data,
-          currentPage: currentPage + 1,
-          animalClicked: animal,
-        });
-      })
-      .catch(err => console.log(err));
+    // axios.get(`/api/pets/${animal}`)
+    // .then((response) => {
+    this.setState({
+      // animals: response.data.pets,
+      currentPage: currentPage + 1,
+      animalClicked: animal,
+    });
+    // })
+    // .catch(err => console.log(err));
   }
 
   changePage = () => {
