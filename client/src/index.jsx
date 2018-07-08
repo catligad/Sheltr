@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Background } from './components/styles/indexStylings';
 import Page1 from './components/page1';
 import Page2 from './components/page2';
+import Page3 from './components/page3';
 
 export default class App extends Component {
   constructor(props) {
@@ -19,16 +20,11 @@ export default class App extends Component {
     });
   }
 
-  onLogInClick = () => {
+  changePage = (event, animal = null) => {
     const { currentPage } = this.state;
     this.setState({
-      currentPage: currentPage + 1,
-    });
-  }
-
-  onAnimalClick = (animal) => {
-    this.setState({
       animalClicked: animal,
+      currentPage: currentPage + 1,
     });
   }
 
@@ -38,13 +34,13 @@ export default class App extends Component {
       <Background>
         <Page1
           currentPage={currentPage}
-          onBtnClick={this.onLogInClick}
+          onBtnClick={this.changePage}
           onLogoClick={this.onLogoClick}
         />
         <Page2
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
-          onAnimalClick={this.onAnimalClick}
+          onAnimalClick={this.changePage}
         />
         <Page3
           currentPage={currentPage}

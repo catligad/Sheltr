@@ -1,23 +1,15 @@
 import React from 'react';
 import {
-  Holder, Title, Login, Input, Button, Image,
+  Holder, Login, Input, Button,
 } from './styles/pageStylings';
-import logo from '../../public/icons/png/004-kennel.png';
+import Logo from './logo';
 
 export default function Page1(props) {
   const { currentPage, onBtnClick, onLogoClick } = props;
   if (currentPage === 1) {
     return (
       <Holder page="1">
-        <Title>
-          <Image
-            src={logo}
-            type="logo"
-            alt="logo"
-            onClick={onLogoClick}
-          />
-          Sheltr
-        </Title>
+        <Logo onLogoClick={onLogoClick} />
         <Login>
           Email
           <Input />

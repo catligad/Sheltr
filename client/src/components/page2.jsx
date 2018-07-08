@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  Holder, Title, ImageHolder, Image, Animal, Description, Pregunta,
+  Holder, ImageHolder, Image, Animal, Description, Pregunta,
 } from './styles/pageStylings';
-import logo from '../../public/icons/png/004-kennel.png';
+import Logo from './logo';
 
 const images = {
   Dogs: require('../../public/icons/png/024-dog-1.png'),
@@ -13,10 +13,9 @@ const images = {
   Barnyard: require('../../public/icons/png/007-hedgehog.png'),
 };
 
-export default function Page2(props) {
-  const { currentPage, onLogoClick, onAnimalClick } = props;
-  if (currentPage === 2) {
-    const animalLogos = Object.keys(images).map(image => (
+const AnimalLogos = ({ onAnimalClick }) => (
+  <ImageHolder>
+    {Object.keys(images).map(image => (
       <Animal key={image}>
         <Image
           src={images[image]}
@@ -28,24 +27,20 @@ export default function Page2(props) {
           {image}
         </Description>
       </Animal>
-    ));
+    ))}
+  </ImageHolder>
+);
+
+export default function Page2(props) {
+  const { currentPage, onLogoClick, onAnimalClick } = props;
+  if (currentPage === 2) {
     return (
       <Holder page="2">
-        <Title>
-          <Image
-            src={logo}
-            alt="logo"
-            type="logo"
-            onClick={onLogoClick}
-          />
-          Sheltr
-        </Title>
+        <Logo onLogoClick={onLogoClick} />
         <Pregunta>
           Which Animal Would You Like To Sheltr?
         </Pregunta>
-        <ImageHolder>
-          {animalLogos}
-        </ImageHolder>
+        <AnimalLogos onAnimalClick={onAnimalClick} />
       </Holder>
     );
   }

@@ -1,34 +1,50 @@
-import React from 'react';
-import {
-  Holder, Title, Login, Input, Button, Image,
-} from './styles/pageStylings';
-import logo from '../../public/icons/png/004-kennel.png';
+import React, { Component } from 'react';
+import Cards, { Card } from 'react-swipe-card';
+import './styles/styles.css';
 
-export default function Page1(props) {
-  const { currentPage, onBtnClick, onLogoClick } = props;
-  if (currentPage === 1) {
-    return (
-      <Holder page="1">
-        <Title>
-          <Image
-            src={logo}
-            type="logo"
-            alt="logo"
-            onClick={onLogoClick}
-          />
-          Sheltr
-        </Title>
-        <Login>
-          Email
-          <Input />
-          Password
-          <Input type="password" />
-          <Button onClick={onBtnClick}>
-            Log In!
-          </Button>
-        </Login>
-      </Holder>
-    );
+const Wrapper = ({ data, onSwipeLeft, onSwipeRight }) => (
+  <Cards onEnd={console.log("action('end')")} className="master-root">
+    {data.map(item => (
+      <Card
+        key={item}
+        onSwipeLeft={() => onSwipeLeft(item)}
+        onSwipeRight={() => onSwipeRight(item)}
+      >
+        <h2>
+          {item}
+        </h2>
+      </Card>
+    ))}
+  </Cards>
+);
+
+export default class MyCards extends Component {
+  state = {
+    data: ['Alexandre', 'Thomas', 'Lucien', 'Raphael', 'Donatello', 'Michelangelo', 'Leonardo'],
   }
-  return null;
+
+  onSwipeLeft = () => {
+    const newData = this.state.data.slice(1);
+    this.setState(prevState => ({ data: newData, disliked: [...prevState.disliked, prevState.data[0]] }));
+  }
+
+  onSwipeRight = () => {
+    const newData = this.state.data.slice(1);
+    this.setState(prevState => ({ data: newData, liked: [...prevState.liked, prevState.data[0]] }));
+  }
+
+  render() {
+    const { currentPage } = this.props;
+    if (currentPage === 3) {
+      return (
+        <Wrapper
+          onSwipeLeft={this.onSwipeLeft}
+          onSwipeRight={this.onSwipeRight}
+          data={this.state.data}
+        />
+
+      );
+    }
+    return null;
+  }
 }

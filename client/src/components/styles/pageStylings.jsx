@@ -57,6 +57,9 @@ export const Button = styled.button`
   height: 20px;
   width: 100%;
   outline: none;
+  &:hover {
+    background-color: rgb(14,155,99, 0.8)
+  }
 `;
 
 export const ImageHolder = styled.div`
@@ -110,8 +113,8 @@ export const Image = styled.img`
       return '40px';
     }
   }}
-  transition: box-shadow top 0.5s ease-in-out;
   border-radius: 50%;
+  transition: box-shadow all 0.5s ease-in-out;
 
   &:hover{
     box-shadow: 0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12);
