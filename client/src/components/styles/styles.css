@@ -1,33 +1,24 @@
-img {
-  width: 100%;
-}
-
-li {
-  list-style: none;
-}
-
-h1, h2 {
-  font-weight: 500;
-}
-
 .master-root {
-  margin: 20px auto;
+  padding-top: 5px;
   position: relative;
-  min-height: 300px;
-  max-height: 100px;
-  width: 300px;
+  min-height: 310px;
+  width: 100%;
   overflow: hidden;
-  border: 1px solid #e5e5e5;
 }
 
 .card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
   background-color: white;
   background-size: cover;
   position: absolute;
   background: #F8F3F3;
-  height: 200px;
-  width: 180px;
-  margin: 0 auto;
+  height: 300px;
+  width: 320px;
   transition: box-shadow .3s;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   cursor: pointer;
@@ -40,6 +31,10 @@ h1, h2 {
 
 .inactive {
   box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 }
 
 .alert {
@@ -73,19 +68,3 @@ h1, h2 {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
 }
-
-.alert-top {
-  background: purple;
-  border-radius: 50px;
-  transform: translate(-50%, 0);
-  margin-left: 50%;
- }
-
- .alert-bottom {
-  bottom: 0;
-  background: blue;
-  border-top-left-radius: 50px;
-  border-radius: 50px;
-  transform: translate(-50%, 0);
-  margin-left: 50%;
- }

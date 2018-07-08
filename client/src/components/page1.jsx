@@ -8,7 +8,7 @@ export default function Page1(props) {
   const { currentPage, onBtnClick, onLogoClick } = props;
   if (currentPage === 1) {
     return (
-      <Holder page="1">
+      <Holder page={currentPage}>
         <Logo onLogoClick={onLogoClick} />
         <Login>
           Email

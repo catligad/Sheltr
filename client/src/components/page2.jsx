@@ -15,16 +15,16 @@ const images = {
 
 const AnimalLogos = ({ onAnimalClick }) => (
   <ImageHolder>
-    {Object.keys(images).map(image => (
-      <Animal key={image}>
+    {Object.keys(images).map(animal => (
+      <Animal key={animal}>
         <Image
-          src={images[image]}
+          src={images[animal]}
           alt="animal"
           type="animal"
-          onClick={() => onAnimalClick(image)}
+          onClick={() => onAnimalClick(animal)}
         />
         <Description>
-          {image}
+          {animal}
         </Description>
       </Animal>
     ))}
@@ -35,7 +35,7 @@ export default function Page2(props) {
   const { currentPage, onLogoClick, onAnimalClick } = props;
   if (currentPage === 2) {
     return (
-      <Holder page="2">
+      <Holder page={currentPage}>
         <Logo onLogoClick={onLogoClick} />
         <Pregunta>
           Which Animal Would You Like To Sheltr?

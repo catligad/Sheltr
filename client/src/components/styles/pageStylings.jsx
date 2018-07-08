@@ -2,25 +2,33 @@ import styled from 'styled-components';
 
 export const Holder = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: ${({ page }) => (page === 3 ? '' : 'center')};
   align-items: center;
   flex-direction: column;
   font-family: 'Handlee', cursive;
-  width: ${(props) => {
-    const { page } = props;
-    if (page === '1') {
+  width: ${({ page }) => {
+    if (page === 1) {
       return '25%';
-    } if (page === '2') {
-      return '55%';
     }
-  }};
-  height: ${(props) => {
-    const { page } = props;
-    if (page === '1') {
+    if (page === 2) {
       return '35%';
-    } if (page === '2') {
+    }
+    if (page === 3) {
+      return '25%';
+    }
+    return null;
+  }};
+  height: ${({ page }) => {
+    if (page === 1) {
+      return '35%';
+    }
+    if (page === 2) {
       return '65%';
     }
+    if (page === 3) {
+      return '65%';
+    }
+    return null;
   }};
   border-radius: 30px;
   background: rgba(255,250,240,.9);
@@ -97,27 +105,84 @@ export const Pregunta = styled.div`
 `;
 
 export const Image = styled.img`
-  height: ${(props) => {
-    const { type } = props;
+  height: ${({ type }) => {
     if (type === 'animal') {
       return '150px';
-    } if (type === 'logo') {
+    } if (type === 'logo' || type === 'nav') {
       return '40px';
     }
+    return null;
   }};
-  width: ${(props) => {
-    const { type } = props;
+  width: ${({ type }) => {
     if (type === 'animal') {
       return '150px';
-    } if (type === 'logo') {
+    } if (type === 'logo' || type === 'nav') {
       return '40px';
     }
-  }}
-  border-radius: 50%;
+    return null;
+  }};
+  border-radius: ${({ type, nav }) => {
+    if (type === 'animal' || nav === 'settings') {
+      return '50%';
+    }
+    if (nav === 'liked') {
+      return '5px 5px 20px 20px';
+    }
+    if (type === 'logo') {
+      return '5px';
+    }
+    return null;
+  }};
   transition: box-shadow all 0.5s ease-in-out;
 
   &:hover{
     box-shadow: 0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12);
     transform: scale(1.15, 1.15);
   }
+`;
+
+export const NoPic = styled.img`
+  height: 200px;
+  width: 200px;
+`;
+
+export const LogoHolder = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 0px -10px;
+  border-bottom: 1px solid grey;
+`;
+
+export const BtnHolder = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+`;
+
+export const DecisionBtn = styled.img`
+  height: ${({ type }) => {
+    if (type === 'side') {
+      return '50px';
+    }
+    if (type === 'center') {
+      return '70px';
+    }
+  }};
+  width: ${({ type }) => {
+    if (type === 'side') {
+      return '50px';
+    }
+    if (type === 'center') {
+      return '70px';
+    }
+  }};
+  padding-left: ${({ nav }) => (
+    nav === 'undo' ? '25px' : ''
+  )};
+  padding-right: ${({ nav }) => (
+    nav === 'info' ? '25px' : ''
+  )};
 `;

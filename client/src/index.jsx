@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import axios from 'axios';
 import { Background } from './components/styles/indexStylings';
 import Page1 from './components/page1';
 import Page2 from './components/page2';
@@ -11,6 +12,7 @@ export default class App extends Component {
     this.state = {
       currentPage: 2,
       animalClicked: null,
+      animals: [],
     };
   }
 
@@ -20,16 +22,28 @@ export default class App extends Component {
     });
   }
 
-  changePage = (event, animal = null) => {
+  onAnimalClick = (animal) => {
+    const { currentPage } = this.state;
+    axios.get(`/api/pets/${animal}`)
+      .then((response) => {
+        this.setState({
+          animals: response.data,
+          currentPage: currentPage + 1,
+          animalClicked: animal,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  changePage = () => {
     const { currentPage } = this.state;
     this.setState({
-      animalClicked: animal,
       currentPage: currentPage + 1,
     });
   }
 
   render() {
-    const { currentPage, animalClicked } = this.state;
+    const { currentPage, animalClicked, animals } = this.state;
     return (
       <Background>
         <Page1
@@ -40,12 +54,13 @@ export default class App extends Component {
         <Page2
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
-          onAnimalClick={this.changePage}
+          onAnimalClick={this.onAnimalClick}
         />
         <Page3
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
           onAnimalClick={animalClicked}
+          animals={animals}
         />
       </Background>
     );

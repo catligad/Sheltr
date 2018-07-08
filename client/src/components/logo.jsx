@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Title, Image,
 } from './styles/pageStylings';
-import logo from '../../public/icons/png/004-kennel.png';
+import logo from '../../public/icons/png/pet.png';
 
 export default ({ onLogoClick }) => (
   <Title>
