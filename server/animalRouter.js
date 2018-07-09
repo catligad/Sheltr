@@ -53,7 +53,6 @@ router.get('/:type', (req, res) => {
         });
         pets.push(petData);
       });
-      console.log(JSON.stringify(pets));
       res.send({ pets });
     })
     .catch(err => console.log(err));

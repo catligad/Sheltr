@@ -13,7 +13,7 @@ export default styled.div`
     if (page === 2) {
       return '35%';
     }
-    if (page === 3) {
+    if (page === 3 || page === 4) {
       return '22%';
     }
     return null;
@@ -25,7 +25,7 @@ export default styled.div`
     if (page === 2) {
       return '65%';
     }
-    if (page === 3) {
+    if (page === 3 || page === 4) {
       return '65%';
     }
     return null;

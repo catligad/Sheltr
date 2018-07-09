@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Navi from './page3Navi';
+import _ from 'lodash';
+import Navi from './navi';
 import PetCards from './page3PetCards';
 import ButtonSelection from './page3Btns';
 import Holder from './styles/holderStylings';
@@ -7,12 +8,12 @@ import Holder from './styles/holderStylings';
 export default class MyCards extends Component {
   constructor(props) {
     super(props);
-    const { animals } = this.props;
     this.state = {
       info: false,
-      data: animals,
+      data: null,
       lastAnimal: null,
     };
+    console.log(this.state.data);
   }
 
   onSwipe = () => {
@@ -44,25 +45,30 @@ export default class MyCards extends Component {
   onUndoClick = () => {
     const { data, lastAnimal } = this.state;
     const newData = data.slice();
-    newData.unshift(lastAnimal);
-    this.setState({
-      data: newData,
-    });
+    if (!_.isEqual(newData[0], lastAnimal)) {
+      newData.unshift(lastAnimal);
+      this.setState({
+        data: newData,
+      });
+    }
   }
 
   render() {
-    const { currentPage, onLogoClick } = this.props;
+    const { currentPage, onLogoClick, onHeartClick } = this.props;
     const { info, data } = this.state;
     if (currentPage === 3) {
       return (
         <Holder page={currentPage}>
-          <Navi onLogoClick={onLogoClick} />
-          <PetCards
+          <Navi
+            onLogoClick={onLogoClick}
+            onHeartClick={onHeartClick}
+          />
+          {/* <PetCards
             onSwipeLeft={this.onSwipe}
             onSwipeRight={this.onSwipe}
             data={data}
             info={info}
-          />
+          /> */}
           <ButtonSelection
             infoClicked={this.onInfoClick}
             undoClicked={this.onUndoClick}

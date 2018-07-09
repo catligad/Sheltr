@@ -26,10 +26,16 @@ export const DecisionBtn = styled.img`
     }
     return null;
   }};
-  padding-left: ${({ nav }) => (
+  margin-left: ${({ nav }) => (
     nav === 'undo' ? '25px' : ''
   )};
-  padding-right: ${({ nav }) => (
+  margin-right: ${({ nav }) => (
     nav === 'info' ? '25px' : ''
   )};
+  border-radius: 50%;
+  transform: ${({ nav }) => (nav === 'undo' ? 'rotate(210deg)' : '')};
+  &:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  };
 `;

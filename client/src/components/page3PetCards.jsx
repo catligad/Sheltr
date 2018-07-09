@@ -33,8 +33,8 @@ export default ({
     return (
       <Card
         key={pet.name}
-        onSwipeLeft={() => onSwipeLeft(pet)}
-        onSwipeRight={() => onSwipeRight(pet)}
+        onSwipeLeft={() => onSwipeLeft()}
+        onSwipeRight={() => onSwipeRight()}
       >
         <Image
           src={imgSrc}
