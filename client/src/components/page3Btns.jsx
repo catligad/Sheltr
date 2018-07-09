@@ -11,7 +11,7 @@ const images = {
 };
 
 export default ({
-  infoClicked, undoClicked, unlikeClicked, likeClicked,
+  infoClicked, undoClicked, opinionClicked,
 }) => (
   <BtnHolder>
     <DecisionBtn
@@ -23,12 +23,12 @@ export default ({
     <DecisionBtn
       src={images.cancel}
       type="center"
-      onClick={unlikeClicked}
+      onClick={opinionClicked}
     />
     <DecisionBtn
       src={images.checked}
       type="center"
-      onClick={likeClicked}
+      onClick={opinionClicked}
     />
     <DecisionBtn
       src={images.info}

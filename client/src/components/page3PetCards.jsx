@@ -7,7 +7,7 @@ import noPicLogo from '../../public/icons/png/no-camera.png';
 import './styles/styles.css';
 
 export default ({
-  data, info, onSwipeLeft, onSwipeRight,
+  data, info, onSwipe,
 }) => {
   const cards = data.map((pet) => {
     let imgSrc;
@@ -33,8 +33,8 @@ export default ({
     return (
       <Card
         key={pet.name}
-        onSwipeLeft={() => onSwipeLeft()}
-        onSwipeRight={() => onSwipeRight()}
+        onSwipeLeft={() => onSwipe()}
+        onSwipeRight={() => onSwipe()}
       >
         <Image
           src={imgSrc}

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default styled.div`
   display: flex;
-  justify-content: ${({ page }) => (page === 3 ? '' : 'center')};
+  justify-content: ${({ page }) => (page === 3 || page === 4 ? '' : 'center')};
   align-items: center;
   flex-direction: column;
   font-family: 'Handlee', cursive;

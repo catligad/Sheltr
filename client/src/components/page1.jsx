@@ -7,21 +7,18 @@ import Logo from './logo';
 
 export default function Page1(props) {
   const { currentPage, onBtnClick, onLogoClick } = props;
-  if (currentPage === 1) {
-    return (
-      <Holder page={currentPage}>
-        <Logo onLogoClick={onLogoClick} />
-        <Login>
+  return (
+    <Holder page={currentPage}>
+      <Logo onLogoClick={onLogoClick} />
+      <Login>
           Email
-          <Input />
+        <Input />
           Password
-          <Input type="password" />
-          <Button onClick={onBtnClick}>
+        <Input type="password" />
+        <Button onClick={onBtnClick}>
             Log In!
-          </Button>
-        </Login>
-      </Holder>
-    );
-  }
-  return null;
+        </Button>
+      </Login>
+    </Holder>
+  );
 }

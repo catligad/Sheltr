@@ -35,16 +35,13 @@ const AnimalLogos = ({ onAnimalClick }) => (
 
 export default function Page2(props) {
   const { currentPage, onLogoClick, onAnimalClick } = props;
-  if (currentPage === 2) {
-    return (
-      <Holder page={currentPage}>
-        <Logo onLogoClick={onLogoClick} />
-        <Pregunta>
+  return (
+    <Holder page={currentPage}>
+      <Logo onLogoClick={onLogoClick} />
+      <Pregunta>
           Which Animal Would You Like To Sheltr?
-        </Pregunta>
-        <AnimalLogos onAnimalClick={onAnimalClick} />
-      </Holder>
-    );
-  }
-  return null;
+      </Pregunta>
+      <AnimalLogos onAnimalClick={onAnimalClick} />
+    </Holder>
+  );
 }

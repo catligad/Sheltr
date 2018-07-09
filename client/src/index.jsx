@@ -7,15 +7,12 @@ import Page2 from './components/page2';
 import Page3 from './components/page3';
 import Page4 from './components/page4';
 
-import sample from './sampleData';
-
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPage: 1,
-      animalClicked: null,
-      animals: sample,
+      currentPage: 3,
+      animals: null,
     };
   }
 
@@ -27,15 +24,14 @@ export default class App extends Component {
 
   onAnimalClick = (animal) => {
     const { currentPage } = this.state;
-    axios.get(`/api/pets/${animal}`)
-      .then((response) => {
-        this.setState({
-          animals: response.data.pets,
-          currentPage: currentPage + 1,
-          animalClicked: animal,
-        });
-      })
-      .catch(err => console.log(err));
+    // axios.get(`/api/pets/${animal}`)
+    //   .then((response) => {
+    this.setState({
+      // animals: response.data.pets,
+      currentPage: currentPage + 1,
+    });
+    // })
+    // .catch(err => console.log(err));
   }
 
   changePage = () => {
@@ -46,30 +42,44 @@ export default class App extends Component {
   }
 
   render() {
-    const { currentPage, animalClicked, animals } = this.state;
-    return (
-      <Background>
+    const { currentPage, animals } = this.state;
+    let page;
+    if (currentPage === 1) {
+      page = (
         <Page1
           currentPage={currentPage}
           onBtnClick={this.changePage}
           onLogoClick={this.onLogoClick}
         />
+      );
+    } else if (currentPage === 2) {
+      page = (
         <Page2
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
           onAnimalClick={this.onAnimalClick}
         />
+      );
+    } else if (currentPage === 3) {
+      page = (
         <Page3
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
-          onAnimalClick={animalClicked}
           animals={animals}
           onHeartClick={this.changePage}
         />
+      );
+    } else if (currentPage === 4) {
+      page = (
         <Page4
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
         />
+      );
+    }
+    return (
+      <Background>
+        {page}
       </Background>
     );
   }
