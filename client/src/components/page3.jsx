@@ -7,17 +7,31 @@ import Holder from './styles/holderStylings';
 export default class MyCards extends Component {
   constructor(props) {
     super(props);
+    const { animals } = this.props;
     this.state = {
       info: false,
+      data: animals,
+      lastAnimal: null,
     };
   }
 
-  onSwipeLeft = () => {
-    console.log('swiped left');
+  onSwipe = () => {
+    const { data } = this.state;
+    const lastAnimal = data[0];
+    this.setState({
+      lastAnimal,
+    });
   };
 
-  onSwipeRight = () => {
-    console.log('swiped right');
+  onOpinion = () => {
+    const { data } = this.state;
+    const lastAnimal = data[0];
+    const newData = data.slice();
+    newData.splice(0, 1);
+    this.setState({
+      data: newData,
+      lastAnimal,
+    });
   };
 
   onInfoClick = () => {
@@ -27,21 +41,33 @@ export default class MyCards extends Component {
     });
   }
 
+  onUndoClick = () => {
+    const { data, lastAnimal } = this.state;
+    const newData = data.slice();
+    newData.unshift(lastAnimal);
+    this.setState({
+      data: newData,
+    });
+  }
+
   render() {
-    const { currentPage, onLogoClick, animals } = this.props;
-    const { info } = this.state;
+    const { currentPage, onLogoClick } = this.props;
+    const { info, data } = this.state;
     if (currentPage === 3) {
       return (
         <Holder page={currentPage}>
           <Navi onLogoClick={onLogoClick} />
           <PetCards
-            onSwipeLeft={this.onSwipeLeft}
-            onSwipeRight={this.onSwipeRight}
-            data={animals}
+            onSwipeLeft={this.onSwipe}
+            onSwipeRight={this.onSwipe}
+            data={data}
             info={info}
           />
           <ButtonSelection
             infoClicked={this.onInfoClick}
+            undoClicked={this.onUndoClick}
+            likeClicked={this.onOpinion}
+            unlikeClicked={this.onOpinion}
           />
         </Holder>
 

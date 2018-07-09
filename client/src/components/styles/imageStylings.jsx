@@ -11,9 +11,6 @@ export default styled.img`
     if (type === 'nav') {
       return '30px';
     }
-    if (type === 'animal') {
-      return '250px';
-    }
     return null;
   }};
   width: ${({ type }) => {
@@ -22,9 +19,6 @@ export default styled.img`
     }
     if (type === 'logo') {
       return '40px';
-    }
-    if (type === 'animal') {
-      return '100%';
     }
     if (type === 'nav') {
       return '30px';
@@ -40,17 +34,12 @@ export default styled.img`
     }
     if (type === 'logo') {
       return '5px';
-    } if (type === 'animal') {
-      return '';
     }
     return null;
   }};
   transition: box-shadow all 0.5s ease-in-out;
   &:hover{
-    box-shadow: ${({ type }) => (type !== 'animal'
-    ? '0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12)' : ''
-  )};
-    transform: ${({ type }) => (type !== 'animal' ? 'scale(1.15, 1.15)' : ''
-  )};
+    box-shadow: 0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12);
+    transform: scale(1.15, 1.15);
   }
 `;

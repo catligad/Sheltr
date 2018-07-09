@@ -10,11 +10,26 @@ const images = {
   info: require('../../public/icons/png/info.png'),
 };
 
-export default ({ infoClicked }) => (
+export default ({
+  infoClicked, undoClicked, unlikeClicked, likeClicked,
+}) => (
   <BtnHolder>
-    <DecisionBtn src={images.undo} type="side" nav="undo" />
-    <DecisionBtn src={images.cancel} type="center" />
-    <DecisionBtn src={images.checked} type="center" />
+    <DecisionBtn
+      src={images.undo}
+      type="side"
+      nav="undo"
+      onClick={undoClicked}
+    />
+    <DecisionBtn
+      src={images.cancel}
+      type="center"
+      onClick={unlikeClicked}
+    />
+    <DecisionBtn
+      src={images.checked}
+      type="center"
+      onClick={likeClicked}
+    />
     <DecisionBtn
       src={images.info}
       type="side"
