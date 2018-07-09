@@ -14,29 +14,38 @@ export default class MyCards extends Component {
     this.state = {
       info: false,
       data: sample,
-      lastAnimal: null,
+      dataForChange: sample,
       lastAnimalIndex: 0,
+      currentAnimalIndex: 0,
+      likedAnimals: [],
+      unlikedAnimals: [],
     };
   }
 
-  onSwipe = () => {
-    const { data, lastAnimalIndex } = this.state;
-    const lastAnimal = data[lastAnimalIndex];
+  onOpinion = (type, direction) => {
+    const {
+      data, dataForChange, lastAnimalIndex, currentAnimalIndex, likedAnimals, unlikedAnimals,
+    } = this.state;
+    if (type === 'btn') {
+      const newData = _.drop(dataForChange);
+      this.setState({
+        dataForChange: newData,
+      });
+    }
+    if (direction === 'right') {
+      const newLikedAnimals = _.concat(likedAnimals, [data[lastAnimalIndex]]);
+      this.setState({
+        likedAnimals: newLikedAnimals,
+      });
+    } else if (direction === 'left') {
+      const newUnlikedAnimals = _.concat(unlikedAnimals, [data[lastAnimalIndex]]);
+      this.setState({
+        unlikedAnimals: newUnlikedAnimals,
+      });
+    }
     this.setState({
-      lastAnimal,
       lastAnimalIndex: lastAnimalIndex + 1,
-    });
-  };
-
-  onOpinion = () => {
-    const { data, lastAnimalIndex } = this.state;
-    const lastAnimal = data[0];
-    const newData = data.slice();
-    newData.splice(0, 1);
-    this.setState({
-      data: newData,
-      lastAnimal,
-      lastAnimalIndex: lastAnimalIndex + 1,
+      currentAnimalIndex: currentAnimalIndex + 1,
     });
   };
 
@@ -48,19 +57,25 @@ export default class MyCards extends Component {
   }
 
   onUndoClick = () => {
-    const { data, lastAnimal } = this.state;
-    const newData = data.slice();
-    if (!_.isEqual(newData[0], lastAnimal)) {
+    const {
+      data, dataForChange, lastAnimalIndex, currentAnimalIndex,
+    } = this.state;
+    const newData = dataForChange.slice(0);
+    const lastAnimal = data[lastAnimalIndex - 1];
+    const currentAnimal = data[currentAnimalIndex];
+    if (!_.isEqual(lastAnimal, currentAnimal)) {
       newData.unshift(lastAnimal);
       this.setState({
-        data: newData,
+        dataForChange: newData,
+        currentAnimalIndex: currentAnimalIndex - 1,
+        lastAnimalIndex: lastAnimalIndex - 1,
       });
     }
   }
 
   render() {
     const { currentPage, onLogoClick, onHeartClick } = this.props;
-    const { info, data } = this.state;
+    const { info, dataForChange } = this.state;
     return (
       <Holder page={currentPage}>
         <Navi
@@ -68,8 +83,8 @@ export default class MyCards extends Component {
           onHeartClick={onHeartClick}
         />
         <PetCards
-          onSwipe={this.onSwipe}
-          data={data}
+          onSwipe={this.onOpinion}
+          data={dataForChange}
           info={info}
         />
         <ButtonSelection

@@ -23,14 +23,14 @@ export default class App extends Component {
   }
 
   onAnimalClick = (animal) => {
-    const { currentPage } = this.state;
+    const { currentPage, animals } = this.state;
     // axios.get(`/api/pets/${animal}`)
     //   .then((response) => {
     this.setState({
       // animals: response.data.pets,
       currentPage: currentPage + 1,
-    });
-    // })
+    }, () => console.log(animals));
+    // });
     // .catch(err => console.log(err));
   }
 

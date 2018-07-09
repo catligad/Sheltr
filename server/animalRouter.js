@@ -34,8 +34,9 @@ router.get('/:type', (req, res) => {
     },
   })
     .then((response) => {
+      console.log(response.data.petfinder.pets.pet);
       const pets = [];
-      const list = ['name', 'age', 'size', 'breeds', 'description', 'media'];
+      const list = ['name', 'age', 'size', 'breeds', 'description', 'media', 'id'];
       response.data.petfinder.pets.pet.forEach((pet) => {
         const petData = {};
         list.forEach((category) => {
@@ -59,3 +60,28 @@ router.get('/:type', (req, res) => {
 });
 
 module.exports = router;
+
+// { options: {},
+//     status: { '$t': 'A' },
+//     contact:
+//      { phone: [Object],
+//        state: [Object],
+//        address2: {},
+//        email: [Object],
+//        city: [Object],
+//        zip: [Object],
+//        fax: {},
+//        address1: [Object] },
+//     age: { '$t': 'Adult' },
+//     size: { '$t': 'L' },
+//     media: { photos: [Object] },
+//     id: { '$t': '42094392' },
+//     shelterPetId: { '$t': 'A107314' },
+//     breeds: { breed: [Object] },
+//     name: { '$t': 'A107314' },
+//     sex: { '$t': 'M' },
+//     description: {},
+//     mix: { '$t': 'no' },
+//     shelterId: { '$t': 'CA678' },
+//     lastUpdate: { '$t': '2018-07-05T14:56:33Z' },
+//     animal: { '$t': 'Small & Furry' }

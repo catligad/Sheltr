@@ -23,12 +23,12 @@ export default ({
     <DecisionBtn
       src={images.cancel}
       type="center"
-      onClick={opinionClicked}
+      onClick={() => opinionClicked('btn', 'left')}
     />
     <DecisionBtn
       src={images.checked}
       type="center"
-      onClick={opinionClicked}
+      onClick={() => opinionClicked('btn', 'right')}
     />
     <DecisionBtn
       src={images.info}

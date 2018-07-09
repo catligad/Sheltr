@@ -1,6 +1,13 @@
 const { Client } = require('pg');
 
-const client = new Client();
+const cn = {
+  host: 'localhost', // server name or IP address;
+  port: 5432,
+  database: 'pets',
+  user: 'cat',
+};
+
+const client = new Client(cn);
 
 client.connect();
 
