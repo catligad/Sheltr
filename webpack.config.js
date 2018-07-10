@@ -17,9 +17,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['env', 'react', 'es2015'],
-          plugins: ['transform-class-properties', 'babel-plugin-styled-components', {
-            "displayName": true
-          }],
+          plugins: ['transform-class-properties', 'babel-plugin-styled-components'],
         },
       },
       {
