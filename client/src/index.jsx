@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
+import _ from 'lodash';
 import { Background } from './components/styles/indexStylings';
 import Page1 from './components/page1';
 import Page2 from './components/page2';
 import Page3 from './components/page3';
 import Page4 from './components/page4';
+import sample from './sampleData';
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      username: 'cat',
       currentPage: 3,
-      animals: null,
+      data: sample,
+      dataForChange: sample,
+      lastAnimalIndex: 0,
+      currentAnimalIndex: 0,
+      likedAnimals: [],
     };
   }
 
@@ -23,15 +30,73 @@ export default class App extends Component {
   }
 
   onAnimalClick = (animal) => {
-    const { currentPage, animals } = this.state;
-    // axios.get(`/api/pets/${animal}`)
-    //   .then((response) => {
+    const { currentPage } = this.state;
+    axios.get(`/api/pets/${animal}`)
+      .then((response) => {
+        const shuffledAnimals = _.shuffle(response.data.pets);
+        this.setState({
+          data: shuffledAnimals,
+          dataForChange: shuffledAnimals,
+          currentPage: currentPage + 1,
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  onHeartClick = () => {
+    const { username } = this.state;
+    axios.get(`/api/likedAnimals/${username}`)
+      .then((response) => {
+        console.log(response);
+        this.changePage();
+      })
+      .catch(err => console.log(err));
+  }
+
+  onOpinion = (type, direction) => {
+    const {
+      data, dataForChange, lastAnimalIndex, currentAnimalIndex, likedAnimals,
+    } = this.state;
+    if (type === 'btn') {
+      const newData = _.drop(dataForChange);
+      this.setState({
+        dataForChange: newData,
+      });
+    }
+    if (direction === 'right') {
+      const { username } = this.state;
+      const likedAnimal = data[lastAnimalIndex];
+      const id = Number(data[lastAnimalIndex].id);
+      axios.post('/api/likedAnimals/insert', { username, likedAnimal, id })
+        .catch((err) => {
+          console.log(err);
+        });
+      const newLikedAnimals = _.concat(likedAnimals, [data[lastAnimalIndex]]);
+      this.setState({
+        likedAnimals: newLikedAnimals,
+      });
+    }
     this.setState({
-      // animals: response.data.pets,
-      currentPage: currentPage + 1,
-    }, () => console.log(animals));
-    // });
-    // .catch(err => console.log(err));
+      lastAnimalIndex: lastAnimalIndex + 1,
+      currentAnimalIndex: currentAnimalIndex + 1,
+    });
+  };
+
+  onUndoClick = () => {
+    const {
+      data, dataForChange, lastAnimalIndex, currentAnimalIndex,
+    } = this.state;
+    const newData = dataForChange.slice(0);
+    const lastAnimal = data[lastAnimalIndex - 1];
+    const currentAnimal = data[currentAnimalIndex];
+    if (!_.isEqual(lastAnimal, currentAnimal)) {
+      newData.unshift(lastAnimal);
+      this.setState({
+        dataForChange: newData,
+        currentAnimalIndex: currentAnimalIndex - 1,
+        lastAnimalIndex: lastAnimalIndex - 1,
+      });
+    }
   }
 
   changePage = () => {
@@ -42,7 +107,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { currentPage, animals } = this.state;
+    const { currentPage, dataForChange } = this.state;
     let page;
     if (currentPage === 1) {
       page = (
@@ -65,8 +130,10 @@ export default class App extends Component {
         <Page3
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
-          animals={animals}
-          onHeartClick={this.changePage}
+          onHeartClick={this.onHeartClick}
+          onOpinion={this.onOpinion}
+          onUndoClick={this.onUndoClick}
+          dataForChange={dataForChange}
         />
       );
     } else if (currentPage === 4) {

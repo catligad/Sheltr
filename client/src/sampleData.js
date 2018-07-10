@@ -1,18 +1,20 @@
 module.exports = [
   {
-    name: 'Ares',
-    age: 'Young',
-    size: 'M',
-    breeds: { $t: 'Shepherd' },
-    description: 'You can fill out an adoption application online on our official website. 7/22/17 5:49 PM',
-  }, {
     name: 'Shelby',
     age: 'Adult',
     size: 'M',
     breeds: [{ $t: 'Welsh Corgi' }, { $t: 'Mixed Breed' }],
     description: "Shelby has tons of love to give (way more than she needs) and she would adore being your constant companion. Shelby likes to take new things slow and hope her forever folks will give her the time, affection, care, and space to get comfy and confident. She's in love with the great outdoors and playing with other dogs is one of her favorite pastimes. Eager to be out and about, Shelby is hoping for mature folks who will want to explore everything together. ",
     media: { photo: [{ '@size': 'pnt', $t: 'http://photos.petfinder.com/photos/pets/41840967/1/?bust=1528467612&width=60&-pnt.jpg', '@id': '1' }, { '@size': 'fpm', $t: 'http://photos.petfinder.com/photos/pets/41840967/1/?bust=1528467612&width=95&-fpm.jpg', '@id': '1' }, { '@size': 'x', $t: 'http://photos.petfinder.com/photos/pets/41840967/1/?bust=1528467612&width=500&-x.jpg', '@id': '1' }, { '@size': 'pn', $t: 'http://photos.petfinder.com/photos/pets/41840967/1/?bust=1528467612&width=300&-pn.jpg', '@id': '1' }, { '@size': 't', $t: 'http://photos.petfinder.com/photos/pets/41840967/1/?bust=1528467612&width=50&-t.jpg', '@id': '1' }, { '@size': 'pnt', $t: 'http://photos.petfinder.com/photos/pets/41840967/2/?bust=1528467669&width=60&-pnt.jpg', '@id': '2' }, { '@size': 'fpm', $t: 'http://photos.petfinder.com/photos/pets/41840967/2/?bust=1528467669&width=95&-fpm.jpg', '@id': '2' }, { '@size': 'x', $t: 'http://photos.petfinder.com/photos/pets/41840967/2/?bust=1528467669&width=500&-x.jpg', '@id': '2' }, { '@size': 'pn', $t: 'http://photos.petfinder.com/photos/pets/41840967/2/?bust=1528467669&width=300&-pn.jpg', '@id': '2' }, { '@size': 't', $t: 'http://photos.petfinder.com/photos/pets/41840967/2/?bust=1528467669&width=50&-t.jpg', '@id': '2' }, { '@size': 'pnt', $t: 'http://photos.petfinder.com/photos/pets/41840967/3/?bust=1528467702&width=60&-pnt.jpg', '@id': '3' }, { '@size': 'fpm', $t: 'http://photos.petfinder.com/photos/pets/41840967/3/?bust=1528467702&width=95&-fpm.jpg', '@id': '3' }, { '@size': 'x', $t: 'http://photos.petfinder.com/photos/pets/41840967/3/?bust=1528467702&width=500&-x.jpg', '@id': '3' }, { '@size': 'pn', $t: 'http://photos.petfinder.com/photos/pets/41840967/3/?bust=1528467702&width=300&-pn.jpg', '@id': '3' }, { '@size': 't', $t: 'http://photos.petfinder.com/photos/pets/41840967/3/?bust=1528467702&width=50&-t.jpg', '@id': '3' }] },
-  }, {
+  },
+  {
+    name: 'Ares',
+    age: 'Young',
+    size: 'M',
+    breeds: { $t: 'Shepherd' },
+    description: 'You can fill out an adoption application online on our official website. 7/22/17 5:49 PM',
+  },
+  {
     name: 'POCKY',
     age: 'Adult',
     size: 'L',

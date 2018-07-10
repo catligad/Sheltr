@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Image = styled.img`
   height: ${({ type }) => (type === 'animal' ? '250px' : '70%')};
   width: ${({ type }) => (type === 'animal' ? '100%' : '70%')};
+  user-select: none;
+  pointer-events: none;
 `;
 
 export const Description = styled.div`

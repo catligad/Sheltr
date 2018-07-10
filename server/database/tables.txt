@@ -1,14 +1,14 @@
 CREATE TABLE users (
-  username VARCHAR(50) UNIQUE PRIMARY KEY,
-)
+  username VARCHAR(50) UNIQUE PRIMARY KEY
+);
 
 CREATE TABLE animals (
   id int PRIMARY KEY,
-  data jsonb,
-)
+  data jsonb
+);
 
 CREATE TABLE animalsLikedByUsers (
   id uuid PRIMARY KEY,
   animalid int REFERENCES animals(id),
-  username int REFERENCES users(username),
-)
+  username VARCHAR(50) REFERENCES users(username)
+);

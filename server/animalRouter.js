@@ -34,7 +34,7 @@ router.get('/:type', (req, res) => {
     },
   })
     .then((response) => {
-      console.log(response.data.petfinder.pets.pet);
+      // console.log(response.data.petfinder.pets.pet);
       const pets = [];
       const list = ['name', 'age', 'size', 'breeds', 'description', 'media', 'id'];
       response.data.petfinder.pets.pet.forEach((pet) => {
