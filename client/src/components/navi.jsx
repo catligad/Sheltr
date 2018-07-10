@@ -6,15 +6,17 @@ import msgLogo from '../../public/icons/png/love.png';
 import settingsLogo from '../../public/icons/png/settings.png';
 
 const LogoHolder = styled.div`
-  position: absolute;
-  width: inherit;
+  position: relative;
+  width: 100%;
+  height: 15%;
   display: flex;
+  align-items: center;
+  padding-top: 1%;
   justify-content: space-around;
-  margin-bottom: 20px;
-  padding-top: 15px;
   border-radius: 30px 30px 0px 0px;
   border-bottom: 1px solid grey;
   background-color: white;
+  box-shadow: 0 2px 2px -2px gray;
 `;
 
 export default ({ onLogoClick, onHeartClick }) => (

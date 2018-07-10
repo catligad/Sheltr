@@ -7,6 +7,9 @@ const Title = styled.div`
   font-size: 40px;
   font-weight: bold;
   display: flex;
+  width: 40%
+  height: 80%;
+  padding-top: 3%;
 `;
 
 export default ({ onLogoClick }) => (

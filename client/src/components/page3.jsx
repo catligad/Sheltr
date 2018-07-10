@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import Navi from './navi';
 import PetCards from './page3PetCards';
 import ButtonSelection from './page3Btns';

@@ -4,7 +4,7 @@ import {
 } from './styles/page2Stylings';
 import Holder from './styles/holderStylings';
 import Image from './styles/imageStylings';
-import Logo from './logo';
+import Navi from './navi';
 
 const images = {
   Dogs: require('../../public/icons/png/024-dog-1.png'),
@@ -34,10 +34,15 @@ const AnimalLogos = ({ onAnimalClick }) => (
 );
 
 export default function Page2(props) {
-  const { currentPage, onLogoClick, onAnimalClick } = props;
+  const {
+    currentPage, onLogoClick, onAnimalClick, onHeartClick,
+  } = props;
   return (
     <Holder page={currentPage}>
-      <Logo onLogoClick={onLogoClick} />
+      <Navi
+        onLogoClick={onLogoClick}
+        onHeartClick={onHeartClick}
+      />
       <Pregunta>
           Which Animal Would You Like To Sheltr?
       </Pregunta>

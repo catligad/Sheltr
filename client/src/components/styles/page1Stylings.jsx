@@ -5,7 +5,14 @@ export const Login = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 75%;
+  width: 50%;
+  height: 30%;
+  background-color: white;
+  justify-content: center;
+  padding: 10%;
+  margin-top: 25%;
+  border-radius: 5px;
+  border: 1px solid black;
 `;
 
 export const Input = styled.input`
@@ -13,7 +20,7 @@ export const Input = styled.input`
   border: 1px solid rgb(14,100,99);
   outline: none;
   height: 20px;
-  width: 100%;
+  width: 70%;
   margin-bottom: 10px;
 `;
 

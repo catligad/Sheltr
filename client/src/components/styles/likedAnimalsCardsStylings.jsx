@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const AllCardsHolder = styled.div`
-  margin-top: 25%;
   margin-bottom: 10%;
   width: 100%;
   height: 100%;

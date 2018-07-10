@@ -10,13 +10,6 @@ import Page4 from './components/page4';
 import Page5 from './components/page5';
 import sample from './sampleData';
 
-// let desc;
-// if (pet.data.description) {
-//   desc = pet.data.description;
-// } else {
-//   desc = 'A friendly pal looking for a loving home.';
-// }
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -148,6 +141,7 @@ export default class App extends Component {
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
           onAnimalClick={this.onAnimalClick}
+          onHeartClick={this.onHeartClick}
         />
       );
     } else if (currentPage === 3) {

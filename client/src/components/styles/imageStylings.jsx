@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export default styled.img`
   height: ${({ type }) => {
     if (type === 'icon') {
-      return '150px';
+      return '100%';
     }
     if (type === 'logo') {
-      return '40px';
+      return '65%';
     }
     if (type === 'nav') {
       return '30px';
@@ -15,10 +15,10 @@ export default styled.img`
   }};
   width: ${({ type }) => {
     if (type === 'icon') {
-      return '150px';
+      return '100%';
     }
     if (type === 'logo') {
-      return '40px';
+      return '25%';
     }
     if (type === 'nav') {
       return '30px';

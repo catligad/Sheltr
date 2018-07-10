@@ -3,13 +3,13 @@ import {
   Login, Input, Button,
 } from './styles/page1Stylings';
 import Holder from './styles/holderStylings';
-import Logo from './logo';
+import Navi from './navi';
 
 export default function Page1(props) {
   const { currentPage, changePage, onLogoClick } = props;
   return (
     <Holder page={currentPage}>
-      <Logo onLogoClick={onLogoClick} />
+      <Navi onLogoClick={onLogoClick} />
       <Login>
           Email
         <Input />
