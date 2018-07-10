@@ -14,7 +14,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       username: 'cat',
-      currentPage: 3,
+      currentPage: 4,
       data: sample,
       dataForChange: sample,
       lastAnimalIndex: 0,
@@ -45,10 +45,11 @@ export default class App extends Component {
 
   onHeartClick = () => {
     const { username } = this.state;
-    axios.get(`/api/likedAnimals/${username}`)
+    axios.get(`/api/likedAnimals/select/${username}`)
       .then((response) => {
-        console.log(response);
-        this.changePage();
+        this.setState({
+          likedAnimals: response.data,
+        }, () => this.changePage());
       })
       .catch(err => console.log(err));
   }
@@ -71,10 +72,6 @@ export default class App extends Component {
         .catch((err) => {
           console.log(err);
         });
-      const newLikedAnimals = _.concat(likedAnimals, [data[lastAnimalIndex]]);
-      this.setState({
-        likedAnimals: newLikedAnimals,
-      });
     }
     this.setState({
       lastAnimalIndex: lastAnimalIndex + 1,
@@ -107,7 +104,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { currentPage, dataForChange } = this.state;
+    const { currentPage, dataForChange, likedAnimals } = this.state;
     let page;
     if (currentPage === 1) {
       page = (
@@ -141,6 +138,7 @@ export default class App extends Component {
         <Page4
           currentPage={currentPage}
           onLogoClick={this.onLogoClick}
+          likedAnimals={likedAnimals}
         />
       );
     }

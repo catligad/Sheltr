@@ -15,15 +15,16 @@ const cn = {
 
 const client = new Pool(cn);
 
-router.get('/select/:username', (request, response) => {
-  const { username } = request.params;
-  const query = {
-    text: 'SELECT * FROM animalsLikedByUsers where username = $1',
-    values: [username],
-  };
-  client.query("select * from users where username = 'cat'")
-    .then((res) => {
-      console.log(res);
+router.get('/select/:username', (req, res) => {
+  const { username } = req.params;
+  const selectFromAnimalsLikedByUsers = `
+    SELECT animals.data FROM animalsLikedByUsers 
+    INNER JOIN animals ON animals.id = animalsLikedByUsers.animalid
+    WHERE animalsLikedByUsers.username = '${username}' 
+  `;
+  client.query(selectFromAnimalsLikedByUsers)
+    .then((response) => {
+      res.status(200).send(response.rows);
     })
     .catch(err => console.log(err.stack));
 });
@@ -35,7 +36,7 @@ router.post('/insert', (req, res) => {
     values: [req.body.id, req.body.likedAnimal],
   };
   const insertIntoAnimalsLikedByUsers = {
-    text: 'INSERT INTO animalsLikedByUsers(id, animalid, username) VALUES ($1, $2, $3)',
+    text: 'INSERT INTO animalsLikedByUsers(id, animalid, username) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING',
     values: [joinId, req.body.id, req.body.username],
   };
   client.query(insertIntoAnimals)
@@ -44,6 +45,7 @@ router.post('/insert', (req, res) => {
         .catch(err => console.log(err));
     })
     .catch(err => console.log(err));
+  res.status(200).send('Yay you liked a pet');
 });
 
 module.exports = router;
