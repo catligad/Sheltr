@@ -18,7 +18,7 @@ const client = new Pool(cn);
 router.get('/select/:username', (req, res) => {
   const { username } = req.params;
   const selectFromAnimalsLikedByUsers = `
-    SELECT animals.data FROM animalsLikedByUsers 
+    SELECT animals.data, animalsLikedByUsers.id FROM animalsLikedByUsers 
     INNER JOIN animals ON animals.id = animalsLikedByUsers.animalid
     WHERE animalsLikedByUsers.username = '${username}' 
   `;
@@ -46,6 +46,14 @@ router.post('/insert', (req, res) => {
     })
     .catch(err => console.log(err));
   res.status(200).send('Yay you liked a pet');
+});
+
+router.delete('/delete/:id', (req, res) => {
+  const { id } = req.params;
+  const query = `DELETE FROM animalsLikedByUsers WHERE id = '${id}'`;
+  client.query(query)
+    .then(() => res.status(200).send('You deleted a pet :('))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;

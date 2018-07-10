@@ -11,15 +11,24 @@ export const Description = styled.div`
   display: flex;
   flex-direction: column;
   align-content: space-around;
-  width: 280px;
+  justify-content: space-around;
+  height: ${({ page5 }) => (page5 ? '50%' : '')};
+  width: ${({ page4, page5 }) => {
+    if (page4) {
+      return '60%';
+    } if (page5) {
+      return '90%';
+    }
+    return '280px';
+  }};
   padding-top: 3px;
 `;
 
 export const Main = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-start;
+  flex-direction: ${({ page4, page5 }) => (page4 || page5 ? 'column' : 'row')};
+  align-items: ${({ page4, page5 }) => (page4 || page5 ? '' : 'flex-end')};
+  justify-content: ${({ page4, page5 }) => (page4 || page5 ? '' : 'flex-start')};
 `;
 
 export const Name = styled.div`
@@ -34,4 +43,5 @@ export const Age = styled.div`
 
 export const Body = styled.div`
   font-size: 13px;
+  width: ${({ page5 }) => (page5 ? '100%' : '')}
 `;

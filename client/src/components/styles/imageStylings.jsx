@@ -42,4 +42,7 @@ export default styled.img`
     box-shadow: 0 10px 10px 0 rgba(0,0,0,.24), 0 0 2px 0 rgba(0,0,0,.12);
     transform: scale(1.15, 1.15);
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;

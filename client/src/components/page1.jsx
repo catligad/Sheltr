@@ -6,7 +6,7 @@ import Holder from './styles/holderStylings';
 import Logo from './logo';
 
 export default function Page1(props) {
-  const { currentPage, onBtnClick, onLogoClick } = props;
+  const { currentPage, changePage, onLogoClick } = props;
   return (
     <Holder page={currentPage}>
       <Logo onLogoClick={onLogoClick} />
@@ -15,7 +15,7 @@ export default function Page1(props) {
         <Input />
           Password
         <Input type="password" />
-        <Button onClick={onBtnClick}>
+        <Button onClick={() => changePage(event, 2)}>
             Log In!
         </Button>
       </Login>

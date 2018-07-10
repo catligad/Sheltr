@@ -6,11 +6,11 @@ import msgLogo from '../../public/icons/png/love.png';
 import settingsLogo from '../../public/icons/png/settings.png';
 
 const LogoHolder = styled.div`
-  width: 100%;
+  position: absolute;
+  width: inherit;
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
-  margin: 0px -10px;
+  margin-bottom: 20px;
   padding-top: 15px;
   border-radius: 30px 30px 0px 0px;
   border-bottom: 1px solid grey;
@@ -31,7 +31,7 @@ export default ({ onLogoClick, onHeartClick }) => (
       alt="Liked Animals"
       type="nav"
       nav="liked"
-      onClick={onHeartClick}
+      onClick={() => onHeartClick()}
     />
   </LogoHolder>
 );

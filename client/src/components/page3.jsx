@@ -31,6 +31,7 @@ export default class MyCards extends Component {
         <Navi
           onLogoClick={onLogoClick}
           onHeartClick={onHeartClick}
+          currentPage={currentPage}
         />
         <PetCards
           onSwipe={onOpinion}

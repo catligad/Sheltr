@@ -38,4 +38,7 @@ export const DecisionBtn = styled.img`
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   };
+  &:hover {
+    cursor: pointer;
+  }
 `;
