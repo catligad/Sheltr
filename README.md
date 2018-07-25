@@ -18,7 +18,7 @@ run npm install, then npm run start
 
 ## Images
 ![start of experience](./images/start.png)<!-- .element height="50%" width="50%" -->
-![pick the type of animal](./images/pickType.png)<!-- .element height="50%" width="50%" -->
 ![like or unlike](./images/choose.png)<!-- .element height="50%" width="50%" -->
+![pick the type of animal](./images/pickType.png)<!-- .element height="50%" width="50%" -->
 ![liked animals](./images/liked.png)<!-- .element height="50%" width="50%" -->
 ![message shelter](./images/message.png)<!-- .element height="50%" width="50%" -->
